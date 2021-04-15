@@ -41,6 +41,26 @@ def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm
 
     return fig
 
+def plot_compared_norms(first_norm, second_norm, first_norm_type: str, second_norm_type: str, \
+    bins_ = 20, first_norm_color='blue',second_norm_color='darkorange', edgecolor_='white'):
+    min_range = round(np.array([first_norm.min(), second_norm.min()]).min(), 2)
+    max_range = round(np.array([first_norm.max(), second_norm.max()]).max(), 2)
+
+
+    # Set the fig dimensions
+    fig, graph = plt.subplots(figsize = (15, 8))
+    
+    # defining the normilized graph
+    graph.hist(first_norm, bins = bins_, alpha = 0.7, color=first_norm_color, edgecolor = edgecolor_, label = first_norm_type)
+    graph.hist(second_norm, bins = bins_, alpha = 0.7, color=second_norm_color, edgecolor = edgecolor_, label = second_norm_type)
+    graph.set_title(f'Comparison between {first_norm_type} and {second_norm_type}')
+    graph.legend()
+    
+    # Set the range of the ticks in x axis, according to data range
+    graph.set_xlabel(f'Range between min: {min_range} and max: {max_range}')
+
+    return fig
+
 def app():
 
     st.title("The Plot")
@@ -48,9 +68,8 @@ def app():
     # Examples
     fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
     fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+    fig3 = plot_compared_norms(df.minmax_norm_ratings, df.mean_norm_ratings, first_norm_type = 'Min-Max normalization', second_norm_type='Mean normalization')
 
     st.pyplot(fig1)
     st.pyplot(fig2)
-
-if __name__ == "__main__":
-    write()
+    st.pyplot(fig3)
