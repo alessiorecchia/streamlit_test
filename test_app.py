@@ -127,7 +127,7 @@ st.markdown("If you want to display only few columns, you can do like the follow
 columns_to_show = st.multiselect("Select the columns you want to display", df.columns)
 st.markdown("Filter out the movies under a threshold of ratings:")
 threshold = st.slider("Filter movies for less than", 2, 10)
-filtered = df[df["rating"] >= threshold]
+filtered = df[df["avg_rating"] >= threshold]
 st.dataframe(filtered[columns_to_show])
 
 
