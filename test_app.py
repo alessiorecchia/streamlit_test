@@ -43,65 +43,65 @@ st.exception("AnError {This app is too cool. Cool it down.}")
 
 st.markdown("### Load images")
 
-img = Image.open("logo.png")
-st.image(img, caption="Hufflepuff logo")
+img = Image.open("fitting_comparison.png")
+st.image(img, caption="Comparison of all fitting function")
 
-st.subheader("Widgets!")
-# Widget 
-if st.checkbox("Show/Hide"):
-    st.text("Showing or Hiding Widget")
+# st.subheader("Widgets!")
+# # Widget 
+# if st.checkbox("Show/Hide"):
+#     st.text("Showing or Hiding Widget")
 
-status = st.radio("What is you status", ("Active", "Inactive"))
-if status == "Active":
-    st.success("You are Active")
-else:
-    st.warning("You're Inactive")
+# status = st.radio("What is you status", ("Active", "Inactive"))
+# if status == "Active":
+#     st.success("You are Active")
+# else:
+#     st.warning("You're Inactive")
 
 # SelectBox
-occupation = st.selectbox("Your occupation", ["Programmer", "Data Scientist", "Striver", "Trying to survive", "Already died :D"])
-st.write("You selected", occupation)
+# occupation = st.selectbox("Your occupation", ["Programmer", "Data Scientist", "Striver", "Trying to survive", "Already died :D"])
+# st.write("You selected", occupation)
 
-music = st.multiselect("Which music do you like?", ["Rock", "Pop", "EDM", "Electronic", "Classical", "Traditional"])
-st.write("You selected", len(music), "music genres")
+# music = st.multiselect("Which music do you like?", ["Rock", "Pop", "EDM", "Electronic", "Classical", "Traditional"])
+# st.write("You selected", len(music), "music genres")
 
-age = st.slider("How old are you?", 18,100)
-st.write(age)
+# age = st.slider("How old are you?", 18,100)
+# st.write(age)
 
-where = st.text_area("Where are you from? Write your city to display it on the map", "Type here...")
-from geopy.geocoders import Nominatim
-if st.button("Submit"):
-    geolocator = Nominatim(user_agent="a")
-    location = geolocator.geocode(where)
-    lat = location.latitude
-    lon = location.longitude
-    map_df = pd.DataFrame.from_dict({"lat":[lat], "lon":[lon]})
-    st.map(map_df)
+# where = st.text_area("Where are you from? Write your city to display it on the map", "Type here...")
+# from geopy.geocoders import Nominatim
+# if st.button("Submit"):
+#     geolocator = Nominatim(user_agent="a")
+#     location = geolocator.geocode(where)
+#     lat = location.latitude
+#     lon = location.longitude
+#     map_df = pd.DataFrame.from_dict({"lat":[lat], "lon":[lon]})
+#     st.map(map_df)
 
-import datetime
-today = st.date_input("Today is", datetime.datetime.now())
+# import datetime
+# today = st.date_input("Today is", datetime.datetime.now())
 
-st.text("Display JSON")
-st.json({"Strive":{"Professor": {"name": "Jan", "subject":"being-great!"}, "TA":{"name":"Antonio", "subject":"being-awesome!"} }})
+# st.text("Display JSON")
+# st.json({"Strive":{"Professor": {"name": "Jan", "subject":"being-great!"}, "TA":{"name":"Antonio", "subject":"being-awesome!"} }})
 
 # Display Row Code
 
-st.text("Display Raw Code")
-st.code("import numpy as np")
+# st.text("Display Raw Code")
+# st.code("import numpy as np")
 
-with st.echo():
-    import pandas as pd
-    df = pd.DataFrame()
+# with st.echo():
+#     import pandas as pd
+#     df = pd.DataFrame()
 
-import time
-st.text("Loading bar and spinner")
-my_bar = st.progress(0)
-if st.button("Progress bar"):
-    with st.spinner("Waiting .."):
+# import time
+# st.text("Loading bar and spinner")
+# my_bar = st.progress(0)
+# if st.button("Progress bar"):
+#     with st.spinner("Waiting .."):
         
-        for p in range(0,120,20):
-            time.sleep(0.5)
-            my_bar = my_bar.progress(p)
-    st.success("Finished")
+#         for p in range(0,120,20):
+#             time.sleep(0.5)
+#             my_bar = my_bar.progress(p)
+#     st.success("Finished")
 
 
 # st.balloons()
@@ -114,7 +114,11 @@ In this example, we will use a csv file created scraping from IMDb last time."""
 
 import pandas as pd
 
-df = pd.read_csv("example.csv")
+df = pd.read_csv("500_rows.csv")
+df['minmax_norm_ratings'] = 1 + (df['avg_rating'] - df['avg_rating'].min()) / (df['avg_rating'].max() - df['avg_rating'].min()) * 9
+df['mean_norm_ratings'] = (1 + (df['avg_rating'] - df['avg_rating'].mean()) / (df['avg_rating'].max() - df['avg_rating'].min())) * 4.5 +1
+
+
 if st.button("Show me the data."):
     st.dataframe(df)
 
