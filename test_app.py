@@ -21,7 +21,7 @@ import src.pages.insights
 import src.pages.plot
 import src.pages.data
 
-ast.core.services.other.set_logging_format()
+# ast.core.services.other.set_logging_format()
 
 PAGES = {
     "Home": src.pages.home,
