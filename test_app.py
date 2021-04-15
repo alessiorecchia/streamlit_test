@@ -58,7 +58,7 @@ else:
     st.warning("You're Inactive")
 
 # SelectBox
-occupation = st.selectbox("Your occupation", ["Programmer", "Data Scientist", "Striver", "Trying to survive"])
+occupation = st.selectbox("Your occupation", ["Programmer", "Data Scientist", "Striver", "Trying to survive", "Already died :D"])
 st.write("You selected", occupation)
 
 music = st.multiselect("Which music do you like?", ["Rock", "Pop", "EDM", "Electronic", "Classical", "Traditional"])
