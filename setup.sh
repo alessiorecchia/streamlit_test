@@ -1,6 +1,6 @@
-mkdir -p ~/code/Strive/streamlit/.streamlit
+mkdir -p ~/.streamlit
 echo "[server]
 headless = true
 port = $PORT
 enableCORS = false
-" > ~/code/Strive/streamlit/.streamlit/config.toml
+" > ~/.streamlit/config.toml
