@@ -18,7 +18,7 @@ import streamlit as st
 
 import src.pages.home
 import src.pages.insights
-import src.pages.plot
+import src.pages.plots
 import src.pages.data
 
 # ast.core.services.other.set_logging_format()
@@ -26,7 +26,7 @@ import src.pages.data
 PAGES = {
     "Home": src.pages.home,
     "The Magic": src.pages.insights,
-    "The Plot": src.pages.plot,
+    "The Plot": src.pages.plots,
     "The Dangeon": src.pages.data,
 }
 
