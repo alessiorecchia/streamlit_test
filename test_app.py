@@ -39,17 +39,16 @@ def main():
     page = PAGES[selection]
 
     with st.spinner(f"Loading {selection} ..."):
-        ast.shared.components.write_page(page)
-    st.sidebar.title("Contribute")
-    st.sidebar.info(
-        "This an open source project and you are very welcome to **contribute** your awesome "
-        "comments, questions, resources and apps as "
-        "[issues](https://github.com/alessiorecchia/hufflepuff_team/issues) of or "
-        "[pull requests](https://github.com/alessiorecchia/hufflepuff_team/pulls) "
-        "to the [source code](https://github.com/alessiorecchia/hufflepuff_team). "
-    )
-    st.sidebar.title("About")
-    st.sidebar.info(
+        st.sidebar.title("Contribute")
+        st.sidebar.info(
+            "This an open source project and you are very welcome to **contribute** your awesome "
+            "comments, questions, resources and apps as "
+            "[issues](https://github.com/alessiorecchia/hufflepuff_team/issues) of or "
+            "[pull requests](https://github.com/alessiorecchia/hufflepuff_team/pulls) "
+            "to the [source code](https://github.com/alessiorecchia/hufflepuff_team). "
+        )
+        st.sidebar.title("About")
+        st.sidebar.info(
 #         """
 #         This app is maintained by Marc Skov Madsen. You can learn more about me at
 #         [datamodelsanalytics.com](https://datamodelsanalytics.com).

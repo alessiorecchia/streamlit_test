@@ -41,9 +41,19 @@ def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm
 
     return fig
 
-# Examples
-fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
-fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+def write():
+    """Writes content to the app"""
+    st.sidebar.title("The Plot")
+    tags = ast.shared.components.multiselect(
+        "Select Tag(s)", options=ast.database.TAGS, default=[]
+    )
 
-st.pyplot(fig1)
-st.pyplot(fig2)
+    # Examples
+    fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
+    fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+
+    st.pyplot(fig1)
+    st.pyplot(fig2)
+
+if __name__ == "__main__":
+    write()
