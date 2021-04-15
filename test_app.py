@@ -24,7 +24,7 @@ PAGES = {
     "Home": src.pages.home,
     "The Magic": src.pages.insights,
     "The Plot": src.pages.plots,
-    "The Dangeon": src.pages.data,
+    "The Dungeon": src.pages.data,
 }
 st.sidebar.title('Navigation')
 selection = st.sidebar.radio("Go to", list(PAGES.keys()))
