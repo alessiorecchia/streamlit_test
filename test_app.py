@@ -133,7 +133,7 @@ st.dataframe(filtered[columns_to_show])
 
 st.subheader("Visualization with Plotly")
 import plotly.express as px
-fig1 = px.bar(df, x = 'director', y = 'profit($ Mil)',title = 'Production House profits')
+fig1 = px.bar(df, x = 'author', y = 'reviews',title = 'very silly test plot')
 
 st.plotly_chart(fig1)
 
