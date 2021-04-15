@@ -13,15 +13,12 @@
 # }
 
 import streamlit as st
-
-# import awesome_streamlit as ast
-
 import src.pages.home
 import src.pages.insights
 import src.pages.plots
 import src.pages.data
 
-# ast.core.services.other.set_logging_format()
+
 
 PAGES = {
     "Home": src.pages.home,
@@ -29,36 +26,10 @@ PAGES = {
     "The Plot": src.pages.plots,
     "The Dangeon": src.pages.data,
 }
-
-
-def main():
-    """Main function of the App"""
-    st.sidebar.title("Navigation")
-    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
-
-    page = PAGES[selection]
-
-    with st.spinner(f"Loading {selection} ..."):
-        st.sidebar.title("Contribute")
-        st.sidebar.info(
-            "This an open source project and you are very welcome to **contribute** your awesome "
-            "comments, questions, resources and apps as "
-            "[issues](https://github.com/alessiorecchia/hufflepuff_team/issues) of or "
-            "[pull requests](https://github.com/alessiorecchia/hufflepuff_team/pulls) "
-            "to the [source code](https://github.com/alessiorecchia/hufflepuff_team). "
-        )
-        st.sidebar.title("About")
-        st.sidebar.info(
-#         """
-#         This app is maintained by Marc Skov Madsen. You can learn more about me at
-#         [datamodelsanalytics.com](https://datamodelsanalytics.com).
-# """
-    )
-
-
-if __name__ == "__main__":
-    main()
-
+st.sidebar.title('Navigation')
+selection = st.sidebar.radio("Go to", list(PAGES.keys()))
+page = PAGES[selection]
+page.app()
 
 
 

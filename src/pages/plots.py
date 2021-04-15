@@ -41,12 +41,9 @@ def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm
 
     return fig
 
-def write():
-    """Writes content to the app"""
-    st.sidebar.title("The Plot")
-    tags = ast.shared.components.multiselect(
-        "Select Tag(s)", options=ast.database.TAGS, default=[]
-    )
+def app():
+
+    st.title("The Plot")
 
     # Examples
     fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')

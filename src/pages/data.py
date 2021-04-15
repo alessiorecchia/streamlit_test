@@ -2,22 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-
-
-def write():
-    """Writes content to the app"""
-    st.sidebar.title("The Dangeon")
-    # tags = ast.shared.components.multiselect(
-    #     "Select Tag(s)", options=ast.database.TAGS, default=[]
-    # )
+def app():
+    st.title("The Dangeon")
     st.header("Pandas and Visualization")
 
     st.markdown("""The great thing about Streamlit is that you can work in Python as you normally do, and then you can add an "interactive layer" to it!
     If you look at the code down here, the dataset is loaded using pandas as you're used to.
     In this example, we will use a csv file created scraping from IMDb last time.""")
-
-    import pandas as pd
-    import numpy as np
 
     df = pd.read_csv("500_rows.csv")
     df['minmax_norm_ratings'] = 1 + (df['avg_rating'] - df['avg_rating'].min()) / (df['avg_rating'].max() - df['avg_rating'].min()) * 9

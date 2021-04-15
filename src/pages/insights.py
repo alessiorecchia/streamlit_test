@@ -5,14 +5,5 @@ import streamlit as st
 
 
 # pylint: disable=line-too-long
-def write():
-    """Used to write the page in the app.py file"""
-    with st.spinner("Loading Insights ..."):
-        # ast.shared.components.title_awesome("")
-        st.write(
-            """
-                Here our insights
-                Here our insights
-                Here our insights
-                Here our insights
-            """)
+def app():
+    st.title("The Magic")
