@@ -164,8 +164,10 @@ def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm
     plt.xticks(np.arange(norm_min, norm_max + 1, 1))
 
 # Examples
-plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
-plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+st.plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
+st.plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+
+
 
 # import plotly.express as px
 # fig1 = px.bar(df, x = 'author', y = 'reviews',title = 'very silly test plot')
