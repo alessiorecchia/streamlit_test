@@ -1,12 +1,72 @@
-import streamlit as st
-from PIL import Image # Required to show images
-import pandas as pd
-logo = Image.open("logo.png")
-st.sidebar.image(logo, width=100)
-# Text/Title
-st.title("Welcome to demo app")
+# import streamlit as st
+# from PIL import Image # Required to show images
+# import pandas as pd
+# logo = Image.open("logo.png")
+# st.sidebar.image(logo, width=100)
 
-st.sidebar.header("Sidebar")
+# PAGES = {
+#     "Home": src.pages.home,
+#     "The Magic": src.pages.insights,
+#     # "Gallery": src.pages.gallery.index,
+    # "Vision": src.pages.vision,
+    # "About": src.pages.about,
+# }
+
+import streamlit as st
+
+# import awesome_streamlit as ast
+
+import src.pages.home
+import src.pages.insights
+import src.pages.plot
+import src.pages.data
+
+ast.core.services.other.set_logging_format()
+
+PAGES = {
+    "Home": src.pages.home,
+    "The Magic": src.pages.insights,
+    "The Plot": src.pages.plot,
+    "The Dangeon": src.pages.data,
+}
+
+
+def main():
+    """Main function of the App"""
+    st.sidebar.title("Navigation")
+    selection = st.sidebar.radio("Go to", list(PAGES.keys()))
+
+    page = PAGES[selection]
+
+    with st.spinner(f"Loading {selection} ..."):
+        ast.shared.components.write_page(page)
+    st.sidebar.title("Contribute")
+    st.sidebar.info(
+        "This an open source project and you are very welcome to **contribute** your awesome "
+        "comments, questions, resources and apps as "
+        "[issues](https://github.com/alessiorecchia/hufflepuff_team/issues) of or "
+        "[pull requests](https://github.com/alessiorecchia/hufflepuff_team/pulls) "
+        "to the [source code](https://github.com/alessiorecchia/hufflepuff_team). "
+    )
+    st.sidebar.title("About")
+    st.sidebar.info(
+#         """
+#         This app is maintained by Marc Skov Madsen. You can learn more about me at
+#         [datamodelsanalytics.com](https://datamodelsanalytics.com).
+# """
+    )
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+# Text/Title
+# st.title("Welcome to demo app")
+
+# st.sidebar.header("Sidebar")
 # st.sidebar.text("Writing on the sidebar!")
 # st.sidebar.markdown("""This is a template for [Streamlit](https://www.streamlit.io/) to publish some results from your first AI Build Week!
 # I wrote some examples of things you could do using Streamlit. Go at the end of the document to look for more resources to learn from!""")
@@ -15,36 +75,36 @@ st.sidebar.header("Sidebar")
 # st.header("This is a header")
 # st.subheader("This is a subheader")
 
-st.text("This is text")
-st.markdown("""### I know, this webapp looks like the Antonio's one. And it is it!
-I hope you guys are better than me in making things look cool (I know you are!). Scroll down to see other stuff I changed!""")
+# st.text("This is text")
+# st.markdown("""### I know, this webapp looks like the Antonio's one. And it is it!
+# I hope you guys are better than me in making things look cool (I know you are!). Scroll down to see other stuff I changed!""")
 
-st.markdown("### Display stuff with `st.write(python_code)`")
-hello_world_variable = "Hello World"
-st.write(hello_world_variable)
+# st.markdown("### Display stuff with `st.write(python_code)`")
+# hello_world_variable = "Hello World"
+# st.write(hello_world_variable)
 
-st.markdown("### Create a button with `st.button('Text')`")
-st.button("Click me")
+# st.markdown("### Create a button with `st.button('Text')`")
+# st.button("Click me")
 
-st.markdown("### If statement with buttons")
-if st.button("Click to show spoiler"):
-    st.write("Bazinga!")
+# st.markdown("### If statement with buttons")
+# if st.button("Click to show spoiler"):
+#     st.write("Bazinga!")
 
-st.markdown("### Success/Info/Warning/Error")
+# st.markdown("### Success/Info/Warning/Error")
 
-st.success("Successful!")
-st.info("Information")
-st.warning("Warning!")
-st.error("Error!")
+# st.success("Successful!")
+# st.info("Information")
+# st.warning("Warning!")
+# st.error("Error!")
 
-st.markdown("### Raise exceptions")
+# st.markdown("### Raise exceptions")
 
-st.exception("AnError {This app is too cool. Cool it down.}")
+# st.exception("AnError {This app is too cool. Cool it down.}")
 
-st.markdown("### Load images")
+# st.markdown("### Load images")
 
-img = Image.open("fitting_comparison.png")
-st.image(img, caption="Comparison of all fitting function")
+# img = Image.open("fitting_comparison.png")
+# st.image(img, caption="Comparison of all fitting function")
 
 # st.subheader("Widgets!")
 # # Widget 
@@ -106,71 +166,71 @@ st.image(img, caption="Comparison of all fitting function")
 
 # st.balloons()
 
-st.header("Pandas and Visualization")
+# st.header("Pandas and Visualization")
 
-st.markdown("""The great thing about Streamlit is that you can work in Python as you normally do, and then you can add an "interactive layer" to it!
-If you look at the code down here, the dataset is loaded using pandas as you're used to.
-In this example, we will use a csv file created scraping from IMDb last time.""")
+# st.markdown("""The great thing about Streamlit is that you can work in Python as you normally do, and then you can add an "interactive layer" to it!
+# If you look at the code down here, the dataset is loaded using pandas as you're used to.
+# In this example, we will use a csv file created scraping from IMDb last time.""")
 
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
 
-df = pd.read_csv("500_rows.csv")
-df['minmax_norm_ratings'] = 1 + (df['avg_rating'] - df['avg_rating'].min()) / (df['avg_rating'].max() - df['avg_rating'].min()) * 9
-df['mean_norm_ratings'] = (1 + (df['avg_rating'] - df['avg_rating'].mean()) / (df['avg_rating'].max() - df['avg_rating'].min())) * 4.5 +1
-
-
-if st.button("Show me the data."):
-    st.dataframe(df)
-
-st.markdown("If you want to display only few columns, you can do like the following:")
-
-columns_to_show = st.multiselect("Select the columns you want to display", df.columns)
-st.markdown("Filter out the movies under a threshold of ratings:")
-threshold = st.slider("Filter movies for less than", 2, 10)
-filtered = df[df["avg_rating"] >= threshold]
-st.dataframe(filtered[columns_to_show])
+# df = pd.read_csv("500_rows.csv")
+# df['minmax_norm_ratings'] = 1 + (df['avg_rating'] - df['avg_rating'].min()) / (df['avg_rating'].max() - df['avg_rating'].min()) * 9
+# df['mean_norm_ratings'] = (1 + (df['avg_rating'] - df['avg_rating'].mean()) / (df['avg_rating'].max() - df['avg_rating'].min())) * 4.5 +1
 
 
+# if st.button("Show me the data."):
+#     st.dataframe(df)
 
-st.subheader("Visualization with Matplotlib")
+# st.markdown("If you want to display only few columns, you can do like the following:")
 
-import matplotlib.pyplot as plt
+# columns_to_show = st.multiselect("Select the columns you want to display", df.columns)
+# st.markdown("Filter out the movies under a threshold of ratings:")
+# threshold = st.slider("Filter movies for less than", 2, 10)
+# filtered = df[df["avg_rating"] >= threshold]
+# st.dataframe(filtered[columns_to_show])
 
-def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm_color='#e67e4d', norm_color='#e67eff', edgecolor_='black'):
+
+
+# st.subheader("Visualization with Matplotlib")
+
+# import matplotlib.pyplot as plt
+
+# def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm_color='#e67e4d', norm_color='#e67eff', edgecolor_='black'):
     
-    # defining some useful variables
-    norm_min = round(norm_series.min(), 2)
-    norm_max = round(norm_series.max(), 2)
+#     # defining some useful variables
+#     norm_min = round(norm_series.min(), 2)
+#     norm_max = round(norm_series.max(), 2)
 
     
-    # Set the number of subplots and the fig dimensions
-    fig, ax = plt.subplots(1, 2, figsize = (15,7))
+#     # Set the number of subplots and the fig dimensions
+#     fig, ax = plt.subplots(1, 2, figsize = (15,7))
 
-    # defining the not-normilized graph
-    ax[0].hist(not_norm_series, bins=bins_, color=not_norm_color, histtype='bar', edgecolor=edgecolor_)
-    ax[0].set_title("Not normalized")
-    ax[0].set_xlabel('Ratings')
-    ax[0].set_ylabel('Frequency')
+#     # defining the not-normilized graph
+#     ax[0].hist(not_norm_series, bins=bins_, color=not_norm_color, histtype='bar', edgecolor=edgecolor_)
+#     ax[0].set_title("Not normalized")
+#     ax[0].set_xlabel('Ratings')
+#     ax[0].set_ylabel('Frequency')
 
-    # defining the normilized graph
-    ax[1].hist(norm_series, bins=bins_, color=norm_color, histtype='bar', edgecolor=edgecolor_)
-    ax[1].set_title(norm_type)
-    ax[1].set_xlabel(f'Ratings (normalized {norm_min} to {norm_max})')
-    ax[1].set_ylabel('Frequency')
+#     # defining the normilized graph
+#     ax[1].hist(norm_series, bins=bins_, color=norm_color, histtype='bar', edgecolor=edgecolor_)
+#     ax[1].set_title(norm_type)
+#     ax[1].set_xlabel(f'Ratings (normalized {norm_min} to {norm_max})')
+#     ax[1].set_ylabel('Frequency')
 
-    # Set the ticks for x axis in normalized graph, according to the data range
-    plt.sca(ax[1])
-    plt.xticks(np.arange(norm_min, norm_max + 1, 1))
+#     # Set the ticks for x axis in normalized graph, according to the data range
+#     plt.sca(ax[1])
+#     plt.xticks(np.arange(norm_min, norm_max + 1, 1))
 
-    return fig
+#     return fig
 
-# Examples
-fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
-fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
+# # Examples
+# fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
+# fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
 
-st.pyplot(fig1)
-st.pyplot(fig2)
+# st.pyplot(fig1)
+# st.pyplot(fig2)
 
 
 
