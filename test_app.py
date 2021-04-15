@@ -46,8 +46,8 @@ st.exception("AnError {This app is too cool. Cool it down.}")
 
 st.markdown("### Load images")
 
-img = Image.open("strive.jpeg")
-st.image(img, caption="Strive Image Caption")
+img = Image.open("logo.png")
+st.image(img, caption="Hufflepuff logo")
 
 st.subheader("Widgets!")
 # Widget 
