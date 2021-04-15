@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 def app():
-    st.title("The Dangeon")
+    st.title("The Dungeon")
     st.header("Pandas and Visualization")
 
     st.markdown("""The great thing about Streamlit is that you can work in Python as you normally do, and then you can add an "interactive layer" to it!
