@@ -163,6 +163,8 @@ def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm
     plt.sca(ax[1])
     plt.xticks(np.arange(norm_min, norm_max + 1, 1))
 
+    return fig
+
 # Examples
 fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
 fig2 = plot_norm(df.avg_rating, df.mean_norm_ratings, norm_type='Mean normalization')
