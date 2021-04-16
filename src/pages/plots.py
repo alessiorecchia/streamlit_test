@@ -8,11 +8,6 @@ df['minmax_norm_ratings'] = 1 + (df['avg_rating'] - df['avg_rating'].min()) / (d
 df['mean_norm_ratings'] = (1 + (df['avg_rating'] - df['avg_rating'].mean()) / (df['avg_rating'].max() - df['avg_rating'].min())) * 4.5 +1
 
 
-
-st.subheader("Visualization with Matplotlib")
-
-import matplotlib.pyplot as plt
-
 def plot_norm(not_norm_series, norm_series, norm_type: str, bins_ = 20, not_norm_color='#e67e4d', norm_color='#e67eff', edgecolor_='black'):
     
     # defining some useful variables
@@ -64,6 +59,7 @@ def plot_compared_norms(first_norm, second_norm, first_norm_type: str, second_no
 def app():
 
     st.title("The Plot")
+    st.subheader("Visualization with Matplotlib")
 
     # Examples
     fig1 = plot_norm(df.avg_rating, df.minmax_norm_ratings, norm_type='Min-Max normalization')
