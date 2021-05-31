@@ -38,7 +38,7 @@ class CNN(nn.Module):
         self.fc3 = nn.Linear(in_features=512, out_features=10)
 
 model = CNN()
-model.load_state_dict(torch.load('/home/alessio/code/Strive/streamlit/pull_&_bear/Model_75%.pt'))
+model.load_state_dict(torch.load('Model_75%.pt'))
 model.eval()
 
 
